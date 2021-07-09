@@ -5,5 +5,30 @@
 @tailwind utilities;
 
 @layer components {
+  .default-button {
+    @apply rounded bg-gray-700 min-w-1/4 focus:outline-none hover:bg-gray-600;
+  }
 
+  .default-lable {
+    @apply rounded bg-gray-700  text-center;
+  }
+
+  .default-text {
+    @apply text-gray-300;
+  }
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
 }
