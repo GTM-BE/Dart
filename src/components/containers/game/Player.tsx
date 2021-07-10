@@ -31,7 +31,7 @@ const Player = forwardRef((props: Props, ref) => {
   const [Rounds, setRounds] = useState<number[]>([]);
   const [Shots, setShots] = useState<number>(0);
 
-  useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score]);
+  useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score, Rounds]);
   useEffect(() => setShots(Rounds.length * 3), [Rounds]);
   useEffect(() => {
     let base = baseScore;
