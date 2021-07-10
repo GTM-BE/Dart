@@ -28,26 +28,25 @@ const Player = forwardRef((props: Props, ref) => {
   const [Name, setName] = useState<string>(randomName);
   const [Score, setScore] = useState<number>(baseScore);
   const [Average, setAverage] = useState<number>(NaN);
-  const [Shots, setShots] = useState<number[]>([]);
+  const [Rounds, setRounds] = useState<number[]>([]);
+  const [Shots, setShots] = useState<number>(0);
 
-  useEffect(() => {
-    setAverage(calculateAverage(baseScore, Score, Shots.length));
-  }, [Score]);
-
+  useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score]);
+  useEffect(() => setShots(Rounds.length * 3), [Rounds]);
   useEffect(() => {
     let base = baseScore;
-    Shots.forEach((shot) => (base = base - shot));
+    Rounds.forEach((shot) => (base = base - shot));
     if (base <= 0) {
       // TODO: RUN FINISH FUNCTION
       setScore(0);
     } else {
       setScore(base);
     }
-  }, [Shots]);
+  }, [Rounds]);
 
   function reset(): void {
     setScore(baseScore);
-    setShots([]);
+    setRounds([]);
   }
 
   useImperativeHandle(ref, () => ({}));
@@ -89,7 +88,9 @@ const Player = forwardRef((props: Props, ref) => {
               } else if (ev.target.value.startsWith('0')) {
                 ev.target.value = ev.target.value.slice(1);
               }
-              ev.target.value = Number(ev.target.value) > 180 ? '180' : ev.target.value;
+              const maxValue = Score < 180 ? Score : 180;
+              ev.target.value =
+                Number(ev.target.value) > maxValue ? `${maxValue}` : ev.target.value;
             }}
             onKeyPress={(ev) => {
               if (Number.isNaN(Number(ev.key))) {
@@ -97,7 +98,7 @@ const Player = forwardRef((props: Props, ref) => {
               }
 
               if (ev.key === 'Enter') {
-                setShots([...Shots, Number(ev.currentTarget.value)]);
+                setRounds([...Rounds, Number(ev.currentTarget.value)]);
                 ev.target.value = '0';
               }
             }}
@@ -105,18 +106,18 @@ const Player = forwardRef((props: Props, ref) => {
         )}
       </div>
       <div className="text-center bg-gray-700 bg-opacity-30 border-t border-b m-2">
-        <p className="text-4xl">{Shots[Shots.length - 1] ?? '---'}</p>
-        <p className="text-3xl">{Shots[Shots.length - 2] ?? '---'}</p>
-        <p className="text-3xl">{Shots[Shots.length - 3] ?? '---'}</p>
-        <p className="text-2xl">{Shots[Shots.length - 4] ?? '---'}</p>
-        <p className="text-2xl">{Shots[Shots.length - 5] ?? '---'}</p>
-        <p className="text-xl">{Shots[Shots.length - 6] ?? '---'}</p>
-        <p className="text-xl">{Shots[Shots.length - 7] ?? '---'}</p>
+        <p className="text-4xl">{Rounds[Rounds.length - 1] ?? '---'}</p>
+        <p className="text-3xl">{Rounds[Rounds.length - 2] ?? '---'}</p>
+        <p className="text-3xl">{Rounds[Rounds.length - 3] ?? '---'}</p>
+        <p className="text-2xl">{Rounds[Rounds.length - 4] ?? '---'}</p>
+        <p className="text-2xl">{Rounds[Rounds.length - 5] ?? '---'}</p>
+        <p className="text-xl">{Rounds[Rounds.length - 6] ?? '---'}</p>
+        <p className="text-xl">{Rounds[Rounds.length - 7] ?? '---'}</p>
       </div>
       <div className="text-center">
         <p className="text-2xl">Score: {Score}</p>
         <p className="text-2xl">Average: {Number.isNaN(Average) ? '---' : Average}</p>
-        <p className="text-2xl">Shots: {Shots.length}</p>
+        <p className="text-2xl">Round: {Rounds.length}</p>
       </div>
     </div>
   );
