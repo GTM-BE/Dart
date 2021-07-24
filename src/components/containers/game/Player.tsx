@@ -6,11 +6,6 @@ function randomName(): string {
   return data.names[Math.floor(Math.random() * data.names.length)];
 }
 
-/*
- * calculate avr
- * ((Score left – 501) / Number of darts thrown) * 3 = Darts average
- */
-
 function calculateAverage(initalScore: number, scoreLeft: number, thrownDarts: number) {
   return Math.floor(((initalScore - scoreLeft) / thrownDarts) * 3) * 1;
 }
@@ -31,13 +26,12 @@ const Player = forwardRef((props: Props, ref) => {
   const [Rounds, setRounds] = useState<number[]>([]);
   const [Shots, setShots] = useState<number>(0);
 
-  useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score, Rounds]);
+  useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score, Shots]);
   useEffect(() => setShots(Rounds.length * 3), [Rounds]);
   useEffect(() => {
     let base = baseScore;
     Rounds.forEach((shot) => (base = base - shot));
     if (base <= 0) {
-      // TODO: RUN FINISH FUNCTION
       setScore(0);
     } else {
       setScore(base);
@@ -49,12 +43,50 @@ const Player = forwardRef((props: Props, ref) => {
     setRounds([]);
   }
 
+  function generateShotHistory(): JSX.Element[] {
+    const scores: JSX.Element[] = [];
+    for (let i = 0; i < (Rounds.length < 7 ? 7 : Rounds.length); i++) {
+      const fontSize = Math.round((2 - 0.2 * i) * 100) / 100;
+      scores.push(
+        <input
+          key={i}
+          type="text"
+          className="default-button shadow-md text-4xl text-center w-11/12 h-16 m-1"
+          defaultValue={Rounds[i] ?? '---'}
+          style={{ fontSize: `${fontSize < 1 ? 1 : fontSize}rem` }}
+          onChange={(ev) => {
+            while (ev.target.value.startsWith('0') && ev.target.value.length >= 2)
+              ev.target.value = ev.target.value.slice(1);
+            if (ev.target.value === '') {
+              ev.target.value = '0';
+            }
+            const maxValue = Score < 180 ? Score : 180;
+            ev.target.value = Number(ev.target.value) > maxValue ? `${maxValue}` : ev.target.value;
+          }}
+          onKeyPress={(ev) => {
+            console.log(Number.isNaN(Number(ev.key)));
+            if (Number.isNaN(Number(ev.key))) {
+              ev.preventDefault();
+            }
+          }}
+          onSelect={(ev) => {
+            if (ev.target.value === '---') {
+              ev.preventDefault();
+            }
+          }}
+        />
+      );
+    }
+    console.log(scores);
+    return scores;
+  }
+
   useImperativeHandle(ref, () => ({}));
 
   return (
-    <div className="flex flex-col justify-items-center border-l border-r border-b border-gray-700 w-full">
-      <div className="inline-flex m-1">
-        <button type="button" className="default-button min-w-0 w-20 mr-1" onClick={() => reset()}>
+    <div className="p-1 grid grid-cols-1 w-full justify-items-center border-l border-r border-b border-gray-700">
+      <div className="inline-flex m-1 w-full">
+        <button type="button" className="default-button mx-1" onClick={() => reset()}>
           Reset
         </button>
         <input
@@ -63,25 +95,20 @@ const Player = forwardRef((props: Props, ref) => {
           defaultValue={Name}
           onChange={(ev) => setName(ev.target.value)}
         />
-        <button
-          type="button"
-          className="default-button min-w-0 w-20 ml-1"
-          onClick={() => RemovePlayer(id)}
-        >
+        <button type="button" className="default-button mx-1" onClick={() => RemovePlayer(id)}>
           Remove
         </button>
-      </div>
-
-      <div className="mx-2 my-1">
+      </div>{' '}
+      <div className="mx-2 my-1 w-full">
         {Score === 0 ? (
-          <div className="text-center text-4xl w-full h-24 focus:outline-none rounded border-b-2 border-gray-700 bg-gray-700 bg-opacity-30 outline-none">
+          <div className="text-center w-full text-6xl h-36 focus:outline-none outline-none rounded border-b-2 border-gray-700 bg-gray-700 bg-opacity-30">
             Finished
           </div>
         ) : (
           <input
             type="text"
             defaultValue="0"
-            className="text-center text-4xl w-full h-24 focus:outline-none rounded border-b-2 border-gray-700 bg-gray-700 bg-opacity-30 outline-none"
+            className="text-center w-full text-6xl h-36 focus:outline-none outline-none rounded border-b-2 border-gray-700 bg-gray-700 bg-opacity-30"
             onChange={(ev) => {
               if (ev.target.value === '') {
                 ev.target.value = '0';
@@ -105,19 +132,13 @@ const Player = forwardRef((props: Props, ref) => {
           />
         )}
       </div>
-      <div className="text-center bg-gray-700 bg-opacity-30 border-t border-b m-2">
-        <p className="text-4xl">{Rounds[Rounds.length - 1] ?? '---'}</p>
-        <p className="text-3xl">{Rounds[Rounds.length - 2] ?? '---'}</p>
-        <p className="text-3xl">{Rounds[Rounds.length - 3] ?? '---'}</p>
-        <p className="text-2xl">{Rounds[Rounds.length - 4] ?? '---'}</p>
-        <p className="text-2xl">{Rounds[Rounds.length - 5] ?? '---'}</p>
-        <p className="text-xl">{Rounds[Rounds.length - 6] ?? '---'}</p>
-        <p className="text-xl">{Rounds[Rounds.length - 7] ?? '---'}</p>
+      <div className="bg-gray-700 bg-opacity-30 text-center border-t border-b m-2 overflow-y-hidden">
+        {generateShotHistory()}
       </div>
       <div className="text-center">
-        <p className="text-2xl">Score: {Score}</p>
-        <p className="text-2xl">Average: {Number.isNaN(Average) ? '---' : Average}</p>
-        <p className="text-2xl">Round: {Rounds.length}</p>
+        <p className="text-5xl">Score: {Score}</p>
+        <p className="text-5xl">Average: {Number.isNaN(Average) ? '---' : Average}</p>
+        <p className="text-5xl">Round: {Rounds.length}</p>
       </div>
     </div>
   );

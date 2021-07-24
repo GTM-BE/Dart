@@ -1,6 +1,6 @@
 import Player from 'Container/game/Player';
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 
 // https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
 function uuidv4(): string {
@@ -15,6 +15,8 @@ function Game() {
   const { baseScore } = useParams<{ baseScore: string }>();
   const [Players, setPlayers] = useState<string[]>([]);
   // const [FocusIndex, setFocusIndex] = useState<number>(0);
+
+  const history = useHistory();
 
   function AddPlayer(): void {
     if (Players.length < 4) setPlayers([...Players, uuidv4()]);
@@ -33,20 +35,20 @@ function Game() {
   ) : (
     <div>
       <div className="flex flex-row p-2 bg-white bg-opacity-5">
-        <button
-          type="button"
-          className="default-button min-w-30 mx-0.5 mr-auto"
-          onClick={AddPlayer}
-        >
+        <button type="button" className="default-button mx-0.5 mr-auto" onClick={AddPlayer}>
           Add player
         </button>
         <div className="default-lable min-w-1/4">Inital Score: {baseScore}</div>
-        <Link to="/home" className="default-button min-w-30 mx-0.5 ml-auto text-center">
-          Back
-        </Link>
+        <button
+          type="button"
+          className="default-button mx-0.5 ml-auto"
+          onClick={() => history.push('/home')}
+        >
+          Add player
+        </button>
       </div>
-      <hr className="border-gray-400" />
-      <div className="flex flex-row p-0 bottom-0 left-0 right-0 top-10 absolute">
+      <hr className="border-gray-400 w-full h-full" />
+      <div className="flex flex-row p-0">
         {Players.map((pl) => (
           <Player key={pl} id={pl} RemovePlayer={RemovePlayer} baseScore={Number(baseScore)} />
         ))}

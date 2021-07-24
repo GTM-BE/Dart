@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Home from 'Routes/Home';
 import NewGame from 'Routes/GameScreen';
 import Scores from 'Routes/Scores';
@@ -11,7 +11,7 @@ import Game from 'Routes/Game';
 const App: React.FC = () => {
   return (
     <div className="min-w-screen min-h-screen bg-gray-800 default-text">
-      <Router>
+      <HashRouter>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -29,7 +29,7 @@ const App: React.FC = () => {
             <Scores />
           </Route>
         </Switch>
-      </Router>
+      </HashRouter>
     </div>
   );
 };

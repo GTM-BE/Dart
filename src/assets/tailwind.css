@@ -6,15 +6,15 @@
 
 @layer components {
   .default-button {
-    @apply rounded bg-gray-700 min-w-1/4 focus:outline-none hover:bg-gray-600;
+    @apply rounded w-1/4 bg-gray-700 focus:outline-none hover:bg-gray-600;
   }
 
   .default-lable {
-    @apply rounded bg-gray-700  text-center;
+    @apply rounded bg-gray-700 text-center;
   }
 
   .default-text {
-    @apply text-gray-300;
+    @apply text-gray-300 text-3xl;
   }
 }
 

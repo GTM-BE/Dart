@@ -607,12 +607,15 @@ video {
 
 .default-button {
   border-radius: 0.25rem;
-  min-width: 25%;
 }
 
 .default-button:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.default-button {
+  width: 25%;
 }
 
 .default-lable {
@@ -623,6 +626,8 @@ video {
 }
 
 .default-text {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
   --tw-text-opacity: 1;
   color: rgba(212, 212, 212, var(--tw-text-opacity));
 }

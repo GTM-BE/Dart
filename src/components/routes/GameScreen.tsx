@@ -1,4 +1,5 @@
 import Menu from 'Container/base/Menu';
+import MenuLabel from 'Container/base/MenuLabel';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -7,24 +8,31 @@ function GameScreen() {
 
   return (
     <Menu title="Game" subTitle="select game type">
-      <Link to="/game_501" className="default-button text-center m-1 w-64">
+      <MenuLabel title="Default game" />
+      <Link to="/game_501" className="default-button text-center m-1 p-1">
         501
       </Link>
-      <Link to="/game_201" className="default-button text-center m-1 w-64">
+      <Link to="/game_201" className="default-button text-center m-1 p-1">
         201
       </Link>
-      <div className="inline-flex min-w-1/4 m-1">
-        <input
-          type="number"
-          defaultValue="0"
-          onChange={(e) => setCustomScore(Number(e.target.value))}
-          className="rounded focus:outline-none text-center bg-gray-700 hover:bg-gray-600 pl-1 w-48"
-        />
-        <Link to={`/game_${CustomScore * 1}`} className="default-button ml-1 text-center w-16">
-          Submit
-        </Link>
-      </div>
-      <Link to="/home" className="default-button text-center m-1 w-64">
+      <MenuLabel title="Custom game" />
+      <input
+        type="number"
+        defaultValue="0"
+        onChange={(e) => {
+          while (e.target.value.startsWith('0') && e.target.value.length >= 2)
+            e.target.value = e.target.value.slice(1);
+          if (e.target.value === '') {
+            e.target.value = '0';
+          }
+          setCustomScore(Number(e.target.value));
+        }}
+        className="default-button focus:outline-none text-center m-1 p-1 w-1/4"
+      />
+      <Link to={`/game_${CustomScore * 1}`} className="default-button text-center m-1 p-1">
+        Submit
+      </Link>
+      <Link to="/home" className="default-button text-center m-1 mt-10 p-1">
         Back
       </Link>
     </Menu>

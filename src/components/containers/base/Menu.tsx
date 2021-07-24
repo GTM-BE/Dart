@@ -11,8 +11,8 @@ function Menu(props: Props) {
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <div className="font-extrabold text-6xl mt-4 mb-3">{title}</div>
-      <div className="font-extrabold text-xl m-2">{subTitle}</div>
+      <div className="font-extrabold text-9xl mt-4 mb-3">{title}</div>
+      {subTitle && <div className="font-extrabold text-5xl mb-3">{subTitle}</div>}
       {children}
     </div>
   );
