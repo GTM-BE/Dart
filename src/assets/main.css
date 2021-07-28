@@ -615,6 +615,7 @@ video {
 }
 
 .default-button {
+  padding: 0.25rem;
   width: 25%;
 }
 
@@ -10391,6 +10392,26 @@ video {
   max-width: 16rem;
 }
 
+.max-w-68 {
+  max-width: 17rem;
+}
+
+.max-w-72 {
+  max-width: 18rem;
+}
+
+.max-w-76 {
+  max-width: 19rem;
+}
+
+.max-w-80 {
+  max-width: 20rem;
+}
+
+.max-w-120 {
+  max-width: 30rem;
+}
+
 .max-w-1\/4 {
   max-width: 25%;
 }
@@ -10611,6 +10632,26 @@ video {
   min-height: 16rem;
 }
 
+.min-h-68 {
+  min-height: 17rem;
+}
+
+.min-h-72 {
+  min-height: 18rem;
+}
+
+.min-h-76 {
+  min-height: 19rem;
+}
+
+.min-h-80 {
+  min-height: 20rem;
+}
+
+.min-h-120 {
+  min-height: 30rem;
+}
+
 .min-h-1\/4 {
   min-height: 25%;
 }
@@ -10829,6 +10870,26 @@ video {
 
 .min-w-64 {
   min-width: 16rem;
+}
+
+.min-w-68 {
+  min-width: 17rem;
+}
+
+.min-w-72 {
+  min-width: 18rem;
+}
+
+.min-w-76 {
+  min-width: 19rem;
+}
+
+.min-w-80 {
+  min-width: 20rem;
+}
+
+.min-w-120 {
+  min-width: 30rem;
 }
 
 .min-w-1\/4 {
@@ -36355,6 +36416,26 @@ input[type='number'] {
     max-width: 16rem;
   }
 
+  .sm\:max-w-68 {
+    max-width: 17rem;
+  }
+
+  .sm\:max-w-72 {
+    max-width: 18rem;
+  }
+
+  .sm\:max-w-76 {
+    max-width: 19rem;
+  }
+
+  .sm\:max-w-80 {
+    max-width: 20rem;
+  }
+
+  .sm\:max-w-120 {
+    max-width: 30rem;
+  }
+
   .sm\:max-w-1\/4 {
     max-width: 25%;
   }
@@ -36575,6 +36656,26 @@ input[type='number'] {
     min-height: 16rem;
   }
 
+  .sm\:min-h-68 {
+    min-height: 17rem;
+  }
+
+  .sm\:min-h-72 {
+    min-height: 18rem;
+  }
+
+  .sm\:min-h-76 {
+    min-height: 19rem;
+  }
+
+  .sm\:min-h-80 {
+    min-height: 20rem;
+  }
+
+  .sm\:min-h-120 {
+    min-height: 30rem;
+  }
+
   .sm\:min-h-1\/4 {
     min-height: 25%;
   }
@@ -36793,6 +36894,26 @@ input[type='number'] {
 
   .sm\:min-w-64 {
     min-width: 16rem;
+  }
+
+  .sm\:min-w-68 {
+    min-width: 17rem;
+  }
+
+  .sm\:min-w-72 {
+    min-width: 18rem;
+  }
+
+  .sm\:min-w-76 {
+    min-width: 19rem;
+  }
+
+  .sm\:min-w-80 {
+    min-width: 20rem;
+  }
+
+  .sm\:min-w-120 {
+    min-width: 30rem;
   }
 
   .sm\:min-w-1\/4 {
@@ -62126,6 +62247,26 @@ input[type='number'] {
     max-width: 16rem;
   }
 
+  .md\:max-w-68 {
+    max-width: 17rem;
+  }
+
+  .md\:max-w-72 {
+    max-width: 18rem;
+  }
+
+  .md\:max-w-76 {
+    max-width: 19rem;
+  }
+
+  .md\:max-w-80 {
+    max-width: 20rem;
+  }
+
+  .md\:max-w-120 {
+    max-width: 30rem;
+  }
+
   .md\:max-w-1\/4 {
     max-width: 25%;
   }
@@ -62346,6 +62487,26 @@ input[type='number'] {
     min-height: 16rem;
   }
 
+  .md\:min-h-68 {
+    min-height: 17rem;
+  }
+
+  .md\:min-h-72 {
+    min-height: 18rem;
+  }
+
+  .md\:min-h-76 {
+    min-height: 19rem;
+  }
+
+  .md\:min-h-80 {
+    min-height: 20rem;
+  }
+
+  .md\:min-h-120 {
+    min-height: 30rem;
+  }
+
   .md\:min-h-1\/4 {
     min-height: 25%;
   }
@@ -62564,6 +62725,26 @@ input[type='number'] {
 
   .md\:min-w-64 {
     min-width: 16rem;
+  }
+
+  .md\:min-w-68 {
+    min-width: 17rem;
+  }
+
+  .md\:min-w-72 {
+    min-width: 18rem;
+  }
+
+  .md\:min-w-76 {
+    min-width: 19rem;
+  }
+
+  .md\:min-w-80 {
+    min-width: 20rem;
+  }
+
+  .md\:min-w-120 {
+    min-width: 30rem;
   }
 
   .md\:min-w-1\/4 {
@@ -87897,6 +88078,26 @@ input[type='number'] {
     max-width: 16rem;
   }
 
+  .lg\:max-w-68 {
+    max-width: 17rem;
+  }
+
+  .lg\:max-w-72 {
+    max-width: 18rem;
+  }
+
+  .lg\:max-w-76 {
+    max-width: 19rem;
+  }
+
+  .lg\:max-w-80 {
+    max-width: 20rem;
+  }
+
+  .lg\:max-w-120 {
+    max-width: 30rem;
+  }
+
   .lg\:max-w-1\/4 {
     max-width: 25%;
   }
@@ -88117,6 +88318,26 @@ input[type='number'] {
     min-height: 16rem;
   }
 
+  .lg\:min-h-68 {
+    min-height: 17rem;
+  }
+
+  .lg\:min-h-72 {
+    min-height: 18rem;
+  }
+
+  .lg\:min-h-76 {
+    min-height: 19rem;
+  }
+
+  .lg\:min-h-80 {
+    min-height: 20rem;
+  }
+
+  .lg\:min-h-120 {
+    min-height: 30rem;
+  }
+
   .lg\:min-h-1\/4 {
     min-height: 25%;
   }
@@ -88335,6 +88556,26 @@ input[type='number'] {
 
   .lg\:min-w-64 {
     min-width: 16rem;
+  }
+
+  .lg\:min-w-68 {
+    min-width: 17rem;
+  }
+
+  .lg\:min-w-72 {
+    min-width: 18rem;
+  }
+
+  .lg\:min-w-76 {
+    min-width: 19rem;
+  }
+
+  .lg\:min-w-80 {
+    min-width: 20rem;
+  }
+
+  .lg\:min-w-120 {
+    min-width: 30rem;
   }
 
   .lg\:min-w-1\/4 {
@@ -113668,6 +113909,26 @@ input[type='number'] {
     max-width: 16rem;
   }
 
+  .xl\:max-w-68 {
+    max-width: 17rem;
+  }
+
+  .xl\:max-w-72 {
+    max-width: 18rem;
+  }
+
+  .xl\:max-w-76 {
+    max-width: 19rem;
+  }
+
+  .xl\:max-w-80 {
+    max-width: 20rem;
+  }
+
+  .xl\:max-w-120 {
+    max-width: 30rem;
+  }
+
   .xl\:max-w-1\/4 {
     max-width: 25%;
   }
@@ -113888,6 +114149,26 @@ input[type='number'] {
     min-height: 16rem;
   }
 
+  .xl\:min-h-68 {
+    min-height: 17rem;
+  }
+
+  .xl\:min-h-72 {
+    min-height: 18rem;
+  }
+
+  .xl\:min-h-76 {
+    min-height: 19rem;
+  }
+
+  .xl\:min-h-80 {
+    min-height: 20rem;
+  }
+
+  .xl\:min-h-120 {
+    min-height: 30rem;
+  }
+
   .xl\:min-h-1\/4 {
     min-height: 25%;
   }
@@ -114106,6 +114387,26 @@ input[type='number'] {
 
   .xl\:min-w-64 {
     min-width: 16rem;
+  }
+
+  .xl\:min-w-68 {
+    min-width: 17rem;
+  }
+
+  .xl\:min-w-72 {
+    min-width: 18rem;
+  }
+
+  .xl\:min-w-76 {
+    min-width: 19rem;
+  }
+
+  .xl\:min-w-80 {
+    min-width: 20rem;
+  }
+
+  .xl\:min-w-120 {
+    min-width: 30rem;
   }
 
   .xl\:min-w-1\/4 {
@@ -139439,6 +139740,26 @@ input[type='number'] {
     max-width: 16rem;
   }
 
+  .\32xl\:max-w-68 {
+    max-width: 17rem;
+  }
+
+  .\32xl\:max-w-72 {
+    max-width: 18rem;
+  }
+
+  .\32xl\:max-w-76 {
+    max-width: 19rem;
+  }
+
+  .\32xl\:max-w-80 {
+    max-width: 20rem;
+  }
+
+  .\32xl\:max-w-120 {
+    max-width: 30rem;
+  }
+
   .\32xl\:max-w-1\/4 {
     max-width: 25%;
   }
@@ -139659,6 +139980,26 @@ input[type='number'] {
     min-height: 16rem;
   }
 
+  .\32xl\:min-h-68 {
+    min-height: 17rem;
+  }
+
+  .\32xl\:min-h-72 {
+    min-height: 18rem;
+  }
+
+  .\32xl\:min-h-76 {
+    min-height: 19rem;
+  }
+
+  .\32xl\:min-h-80 {
+    min-height: 20rem;
+  }
+
+  .\32xl\:min-h-120 {
+    min-height: 30rem;
+  }
+
   .\32xl\:min-h-1\/4 {
     min-height: 25%;
   }
@@ -139877,6 +140218,26 @@ input[type='number'] {
 
   .\32xl\:min-w-64 {
     min-width: 16rem;
+  }
+
+  .\32xl\:min-w-68 {
+    min-width: 17rem;
+  }
+
+  .\32xl\:min-w-72 {
+    min-width: 18rem;
+  }
+
+  .\32xl\:min-w-76 {
+    min-width: 19rem;
+  }
+
+  .\32xl\:min-w-80 {
+    min-width: 20rem;
+  }
+
+  .\32xl\:min-w-120 {
+    min-width: 30rem;
   }
 
   .\32xl\:min-w-1\/4 {

@@ -25,6 +25,7 @@ const Player = forwardRef((props: Props, ref) => {
   const [Average, setAverage] = useState<number>(NaN);
   const [Rounds, setRounds] = useState<number[]>([]);
   const [Shots, setShots] = useState<number>(0);
+  const [ShotHistory, setShotHistory] = useState<JSX.Element[]>([]);
 
   useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score, Shots]);
   useEffect(() => setShots(Rounds.length * 3), [Rounds]);
@@ -41,19 +42,21 @@ const Player = forwardRef((props: Props, ref) => {
   function reset(): void {
     setScore(baseScore);
     setRounds([]);
+    setShotHistory([]);
   }
 
-  function generateShotHistory(): JSX.Element[] {
-    const scores: JSX.Element[] = [];
+  useEffect(() => {
+    let scores = [];
     for (let i = 0; i < (Rounds.length < 7 ? 7 : Rounds.length); i++) {
-      const fontSize = Math.round((2 - 0.2 * i) * 100) / 100;
+      const fontSize = Math.round((3 - 0.4 * i) * 100) / 100;
+
       scores.push(
         <input
           key={i}
           type="text"
           className="default-button shadow-md text-4xl text-center w-11/12 h-16 m-1"
-          defaultValue={Rounds[i] ?? '---'}
-          style={{ fontSize: `${fontSize < 1 ? 1 : fontSize}rem` }}
+          defaultValue={Rounds[Rounds.length - (i + 1)]}
+          style={{ fontSize: `${fontSize < 1.5 ? 1.5 : fontSize}rem` }}
           onChange={(ev) => {
             while (ev.target.value.startsWith('0') && ev.target.value.length >= 2)
               ev.target.value = ev.target.value.slice(1);
@@ -64,22 +67,16 @@ const Player = forwardRef((props: Props, ref) => {
             ev.target.value = Number(ev.target.value) > maxValue ? `${maxValue}` : ev.target.value;
           }}
           onKeyPress={(ev) => {
-            console.log(Number.isNaN(Number(ev.key)));
-            if (Number.isNaN(Number(ev.key))) {
-              ev.preventDefault();
-            }
-          }}
-          onSelect={(ev) => {
-            if (ev.target.value === '---') {
+            console.log(ev.key);
+            if (Number.isNaN(Number(ev.key)) || ev.key === ' ') {
               ev.preventDefault();
             }
           }}
         />
       );
     }
-    console.log(scores);
-    return scores;
-  }
+    setShotHistory(scores);
+  }, [Rounds]);
 
   useImperativeHandle(ref, () => ({}));
 
@@ -98,7 +95,7 @@ const Player = forwardRef((props: Props, ref) => {
         <button type="button" className="default-button mx-1" onClick={() => RemovePlayer(id)}>
           Remove
         </button>
-      </div>{' '}
+      </div>
       <div className="mx-2 my-1 w-full">
         {Score === 0 ? (
           <div className="text-center w-full text-6xl h-36 focus:outline-none outline-none rounded border-b-2 border-gray-700 bg-gray-700 bg-opacity-30">
@@ -120,7 +117,7 @@ const Player = forwardRef((props: Props, ref) => {
                 Number(ev.target.value) > maxValue ? `${maxValue}` : ev.target.value;
             }}
             onKeyPress={(ev) => {
-              if (Number.isNaN(Number(ev.key))) {
+              if (Number.isNaN(Number(ev.key)) || ev.key === ' ') {
                 ev.preventDefault();
               }
 
@@ -132,8 +129,11 @@ const Player = forwardRef((props: Props, ref) => {
           />
         )}
       </div>
-      <div className="bg-gray-700 bg-opacity-30 text-center border-t border-b m-2 overflow-y-hidden">
-        {generateShotHistory()}
+      <div
+        className="bg-gray-700 bg-opacity-30 text-center border-t border-b m-2 overflow-y-scroll"
+        style={{ height: 'calc(100vh - 450px)' }}
+      >
+        {ShotHistory}
       </div>
       <div className="text-center">
         <p className="text-5xl">Score: {Score}</p>
