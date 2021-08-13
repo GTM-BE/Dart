@@ -72,6 +72,11 @@ const Player = forwardRef((props: Props, ref) => {
               ev.preventDefault();
             }
           }}
+          onPaste={(e) => {
+            if (Number.isNaN(Number(e.clipboardData))) {
+              e.preventDefault()
+            }
+          }}
         />
       );
     }
