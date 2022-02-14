@@ -7,7 +7,7 @@
     // enable strict null checks as a best practice
     "strictNullChecks": true,
     // Search under node_modules for non-relative imports.
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     // Process & infer types from .js files.
     "allowJs": true,
     // Don't emit; allow Babel to transform files.

@@ -1,6 +1,7 @@
-import Player from 'Container/game/Player';
 import React, { useEffect, useState } from 'react';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
+
+import Player from 'Container/game/Player';
 
 // https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
 function uuidv4(): string {
@@ -44,7 +45,7 @@ function Game() {
           className="default-button mx-0.5 ml-auto"
           onClick={() => history.push('/home')}
         >
-          Add player
+          Leave Game
         </button>
       </div>
       <hr className="border-gray-400 w-full h-full" />

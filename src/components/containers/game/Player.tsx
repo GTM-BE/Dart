@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
 function randomName(): string {
@@ -26,6 +27,7 @@ const Player = forwardRef((props: Props, ref) => {
   const [Rounds, setRounds] = useState<number[]>([]);
   const [Shots, setShots] = useState<number>(0);
   const [ShotHistory, setShotHistory] = useState<JSX.Element[]>([]);
+  const [OrigValue, setOrigValue] = useState<string>('');
 
   useEffect(() => setAverage(calculateAverage(baseScore, Score, Shots)), [Score, Shots]);
   useEffect(() => setShots(Rounds.length * 3), [Rounds]);
@@ -46,7 +48,7 @@ const Player = forwardRef((props: Props, ref) => {
   }
 
   useEffect(() => {
-    let scores = [];
+    const scores = [];
     for (let i = 0; i < (Rounds.length < 7 ? 7 : Rounds.length); i++) {
       const fontSize = Math.round((3 - 0.4 * i) * 100) / 100;
 
@@ -67,14 +69,30 @@ const Player = forwardRef((props: Props, ref) => {
             ev.target.value = Number(ev.target.value) > maxValue ? `${maxValue}` : ev.target.value;
           }}
           onKeyPress={(ev) => {
-            console.log(ev.key);
-            if (Number.isNaN(Number(ev.key)) || ev.key === ' ') {
+            if (i >= Rounds.length) ev.preventDefault();
+            if (ev.key === 'Enter') {
+              ev.target.blur();
+            } else if (Number.isNaN(Number(ev.key)) || ev.key === ' ') {
               ev.preventDefault();
             }
           }}
           onPaste={(e) => {
             if (Number.isNaN(Number(e.clipboardData))) {
-              e.preventDefault()
+              e.preventDefault();
+            }
+          }}
+          onFocus={(ev) => {
+            if (i >= Rounds.length) ev.target.blur();
+            setOrigValue(ev.target.value);
+          }}
+          onBlur={(ev) => {
+            if (i >= Rounds.length) return;
+            if (Number(ev.target.value) === NaN) {
+              ev.target.value = OrigValue;
+            } else {
+              const data = [...Rounds];
+              data.splice(i, 1, Number(ev.target.value));
+              setRounds(data);
             }
           }}
         />
